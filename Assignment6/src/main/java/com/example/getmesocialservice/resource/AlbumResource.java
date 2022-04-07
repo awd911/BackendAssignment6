@@ -8,6 +8,7 @@ import com.example.getmesocialservice.service.AlbumService;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class AlbumResource {

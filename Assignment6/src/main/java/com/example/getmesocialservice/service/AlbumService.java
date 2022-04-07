@@ -1,12 +1,14 @@
 package com.example.getmesocialservice.service;
 
 import com.example.getmesocialservice.model.Album;
+import org.springframework.web.bind.annotation.*;
 import com.example.getmesocialservice.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@CrossOrigin
 @Service
 public class AlbumService {
 
