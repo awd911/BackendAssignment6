@@ -7,7 +7,7 @@ public class ValidCreatedByValidator implements ConstraintValidator<ValidCreated
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        if(s.matches("[A-Z]")){
+        if(s.matches("[A-Za-z]+")){
             return true;
         }
         else{
