@@ -31,7 +31,8 @@ public class UserResource {
     private FirebaseService firebaseService;
 
     @PostMapping("/user")
-    public User saveUser(@RequestBody @Valid User user, @RequestHeader(name ="idToken") String idToken ) throws exception,FirebaseAuthException, IOException {
+    public User saveUser(@RequestBody @Valid User user, @RequestHeader(name ="idToken") String idToken ) throws exception,FirebaseAuthException, IOException
+    {
 
         firebaseUser firebaseUser = firebaseService.authenticate(idToken);
 
@@ -64,12 +65,24 @@ public class UserResource {
     }
 
     @PutMapping("/user/{id}")
-    public User updateUser(@PathVariable("id") int id, @RequestBody User user){
-        return userService.updateUser(id,user);
+    public User updateUser(@PathVariable("id") int id, @RequestBody User user, @RequestHeader(name ="idToken") String idToken ) throws exception,FirebaseAuthException, IOException
+    {
+        firebaseUser firebaseUser = firebaseService.authenticate(idToken);
+
+        if(firebaseUser != null) {
+            return userService.updateUser(id, user);
+        }
+        return null;
     }
 
     @DeleteMapping("/user")
-    public User deleteUser(@RequestParam(name = "id") int id){
-        return userService.deleteUser(id);
+    public User deleteUser(@RequestParam(name = "id") int id, @RequestBody User user, @RequestHeader(name ="idToken") String idToken ) throws exception,FirebaseAuthException, IOException
+    {
+        firebaseUser firebaseUser = firebaseService.authenticate(idToken);
+
+        if(firebaseUser != null){
+            return userService.deleteUser(id);
+        }
+        return null;
     }
 }
